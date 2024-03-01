@@ -1,0 +1,44 @@
+class Post:
+    def __init__(self, title, content):
+        self.title = title
+        self.content = content
+
+
+class Model:
+    def __init__(self):
+        self.posts = []
+
+    def add_post(self, post):
+        self.posts.append(post)
+
+    def get_posts(self):
+        return self.posts
+
+
+class ViewModel:
+    def __init__(self, model):
+        self.model = model
+
+    def get_post_info(self):
+        posts = self.model.get_posts()
+        return [f"Title: {post.title}, Content: {post.content}" for post in posts]
+
+
+class View:
+    def display_posts(self, post_info):
+        for info in post_info:
+            print(info)
+
+
+# 示例用法
+model = Model()
+post1 = Post("First Post", "This is the content of the first post.")
+post2 = Post("Second Post", "This is the content of the second post.")
+model.add_post(post1)
+model.add_post(post2)
+
+view_model = ViewModel(model)
+post_info = view_model.get_post_info()
+
+view = View()
+view.display_posts(post_info)
