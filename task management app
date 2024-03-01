@@ -1,0 +1,44 @@
+class Task:
+    def __init__(self, title, description):
+        self.title = title
+        self.description = description
+
+
+class Model:
+    def __init__(self):
+        self.tasks = []
+
+    def add_task(self, task):
+        self.tasks.append(task)
+
+    def get_tasks(self):
+        return self.tasks
+
+
+class ViewModel:
+    def __init__(self, model):
+        self.model = model
+
+    def get_task_info(self):
+        tasks = self.model.get_tasks()
+        return [f"Title: {task.title}, Description: {task.description}" for task in tasks]
+
+
+class View:
+    def display_tasks(self, task_info):
+        for info in task_info:
+            print(info)
+
+
+# 示例用法
+model = Model()
+task1 = Task("Task 1", "Do something")
+task2 = Task("Task 2", "Do something else")
+model.add_task(task1)
+model.add_task(task2)
+
+view_model = ViewModel(model)
+task_info = view_model.get_task_info()
+
+view = View()
+view.display_tasks(task_info)
